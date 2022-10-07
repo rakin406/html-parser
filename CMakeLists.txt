@@ -32,18 +32,17 @@ add_library(lib
     src/parser/htmlParser.cc
     src/parser/pageElement.cc
     src/parser/tag.cc)
+target_include_directories(lib PUBLIC include)
+target_link_libraries(lib PUBLIC CONAN_PKG::ctre)
 
 # Make CLI executable link against library
 # add_executable(${PROJECT_NAME} src/cli/cli.cc)
-# target_include_directories(lib PUBLIC include)
 # target_link_libraries(${PROJECT_NAME} PUBLIC lib)
 
 # Examples executable
 # add_executable(wikipedia examples/wikipedia.cc)
-# target_include_directories(lib PUBLIC include)
 # target_link_libraries(wikipedia PUBLIC lib)
 
 # Same here for tests
 add_executable(tests tests/htmlParserTest.cc)
-target_include_directories(lib PUBLIC include)
 target_link_libraries(tests PUBLIC lib CONAN_PKG::catch2)

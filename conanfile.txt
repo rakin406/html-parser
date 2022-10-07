@@ -1,4 +1,5 @@
 [requires]
+ctre/3.7.1
 catch2/3.1.0
 
 [generators]
