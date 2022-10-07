@@ -27,23 +27,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(NO_OUTPUT_DIRS TARGETS)
 
-# Public libraries needed for both main executable and tests
-# add_library(lib
-#     src/utils.cpp
-#     src/bank.cpp
-#     src/client.cpp)
+# Public libraries needed for executables
+add_library(lib src/parser/htmlParser.cc)
 
 # Make CLI executable link against library
-add_executable(${PROJECT_NAME}
-    src/cli/cli.cc
-    )
-target_include_directories(${PROJECT_NAME} PUBLIC include)
+# add_executable(${PROJECT_NAME} src/cli/cli.cc)
+# target_include_directories(lib PUBLIC include)
 # target_link_libraries(${PROJECT_NAME} PUBLIC lib)
 
+# Examples executable
+# add_executable(wikipedia examples/wikipedia.cc)
+# target_include_directories(lib PUBLIC include)
+# target_link_libraries(wikipedia PUBLIC lib)
+
 # Same here for tests
-# add_executable(tests
-#     tests/testUtils.cpp
-#     tests/testBank.cpp
-#     tests/testClient.cpp)
-# target_include_directories(tests PUBLIC include)
-# target_link_libraries(tests PUBLIC lib CONAN_PKG::catch2)
+add_executable(tests tests/htmlParserTest.cc)
+target_include_directories(lib PUBLIC include)
+target_link_libraries(tests PUBLIC lib CONAN_PKG::catch2)
