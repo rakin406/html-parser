@@ -17,5 +17,13 @@ namespace hp
         }
     }
 
-    std::string_view HtmlParser::decode() {}
+    // TODO: Add newline to string after every '>' character
+    // std::string_view HtmlParser::prettify() {
+    //     std::string s = "scott>=tiger";
+    //     std::string delimiter = ">=";
+    //     std::string token = s.substr(0, s.find(delimiter)); // token is
+    //     "scott"
+    // }
+
+    // std::string_view HtmlParser::decode() {}
 } // namespace hp

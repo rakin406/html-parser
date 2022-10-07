@@ -17,6 +17,13 @@ namespace hp
         explicit HtmlParser(std::ifstream& file);
 
         /**
+         * @brief Return prettified HTML document string.
+         *
+         * @return HTML document.
+         */
+        std::string_view prettify();
+
+        /**
          * @brief Returns unicode encoding of the document.
          *
          * @return unicode string.
@@ -85,8 +92,7 @@ namespace hp
 
             /**
              * @brief Extracts a list of Tag objects that match the given
-             * criteria. You can specify the name of the Tag and any
-             attributes
+             * criteria. You can specify the name of the Tag and any attributes
              * you want the Tag to have.
              *
              * @return a vector of tags.
@@ -95,9 +101,8 @@ namespace hp
 
             /**
              * @brief Returns the value of the ‘key’ attribute for the tag,
-             or
-             * the value given for ‘default’ if it doesn’t have that
-             attribute.
+             * or the value given for ‘default’ if it doesn’t have that
+             * attribute.
              *
              * @return value.
              */
