@@ -1,7 +1,30 @@
 #include "htmlParser.h"
 
 #include <fstream>
+#include <string>
 #include <string_view>
+
+namespace
+{
+    /**
+     * @brief Add newline after closing tags.
+     *
+     * @param document HTML document.
+     */
+    void addNewlineAfterClosingTags(std::string& document)
+    {
+        for (std::size_t i = 0; i < document.size(); ++i)
+        {
+            // Match closing tag character '>' and ensure that the letter after
+            // '>' is not a newline.
+            if ((document[i] == '>') && (++i < document.size()) &&
+                (document[++i] != '\n'))
+            {
+                document.insert(++i, "\n");
+            }
+        }
+    }
+} // namespace
 
 namespace hp
 {
@@ -17,13 +40,12 @@ namespace hp
         }
     }
 
-    // TODO: Add newline to string after every '>' character
-    // std::string_view HtmlParser::prettify() {
-    //     std::string s = "scott>=tiger";
-    //     std::string delimiter = ">=";
-    //     std::string token = s.substr(0, s.find(delimiter)); // token is
-    //     "scott"
-    // }
+    std::string_view HtmlParser::prettify()
+    {
+        std::string prettyDoc { m_document.data() };
+        addNewlineAfterClosingTags(prettyDoc);
+        return std::string_view { prettyDoc };
+    }
 
     // std::string_view HtmlParser::decode() {}
 } // namespace hp
