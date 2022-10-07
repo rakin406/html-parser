@@ -1,6 +1,7 @@
 #ifndef HTML_PARSER_H
 #define HTML_PARSER_H
 
+#include <fstream>
 #include <string_view>
 #include <vector>
 
@@ -12,7 +13,8 @@ namespace hp
     class HtmlParser
     {
     public:
-        explicit HtmlParser(std::string_view htmlStr);
+        explicit HtmlParser(std::string_view str);
+        explicit HtmlParser(std::fstream file);
 
         /**
          * @brief Returns unicode encoding of the document.
