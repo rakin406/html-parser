@@ -1,11 +1,14 @@
 #include "htmlParser.h"
 
+#include "constants/tags.h"
+
 #include <fstream>
 #include <string>
 #include <string_view>
 
 namespace
 {
+    // TODO: Add indent after newline
     /**
      * @brief Add newline after closing tags.
      *
