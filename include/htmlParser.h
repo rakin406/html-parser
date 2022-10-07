@@ -14,7 +14,7 @@ namespace hp
     {
     public:
         explicit HtmlParser(std::string_view str);
-        explicit HtmlParser(std::fstream file);
+        explicit HtmlParser(std::ifstream& file);
 
         /**
          * @brief Returns unicode encoding of the document.
@@ -24,6 +24,8 @@ namespace hp
         std::string_view decode();
 
     private:
+        std::string_view m_document {}; // HTML document
+
         /**
          * @brief Contains the navigational information for some part of the
          * page (either a tag or a piece of text)
