@@ -28,7 +28,10 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(NO_OUTPUT_DIRS TARGETS)
 
 # Public libraries needed for executables
-add_library(lib src/parser/htmlParser.cc)
+add_library(lib
+    src/parser/htmlParser.cc
+    src/parser/pageElement.cc
+    src/parser/tag.cc)
 
 # Make CLI executable link against library
 # add_executable(${PROJECT_NAME} src/cli/cli.cc)
