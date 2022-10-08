@@ -5,10 +5,11 @@ namespace lexing
 {
     enum class TokenType
     {
-        OPENING_TAG,
-        ELEMENT,
-        CLOSING_TAG,
-        EOF
+        openingTag,  // Example: <body>
+        closingTag,  // Example: </body>
+        completeTag, // Example: <body />
+        text,        // Example: "Hello"
+        attribute    // Example: src=""
     };
 }
 

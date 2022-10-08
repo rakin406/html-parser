@@ -18,8 +18,6 @@ namespace lexing
             m_start = m_current;
             scanToken();
         }
-
-        m_tokens.emplace_back(TokenType::EOF, "");
         return m_tokens;
     }
 
@@ -35,10 +33,10 @@ namespace lexing
         switch (c)
         {
         case '<':
-            addToken(TokenType::OPENING_TAG);
+            addToken(TokenType::openingTag);
             break;
         case '>':
-            addToken(TokenType::CLOSING_TAG);
+            addToken(TokenType::closingTag);
             break;
         default:
             break;
