@@ -46,13 +46,6 @@ namespace hp
         }
     }
 
-    std::string_view HtmlParser::prettify()
-    {
-        std::string prettyDoc { m_document.data() };
-        addNewlineAfterClosingTags(prettyDoc);
-        return std::string_view { prettyDoc };
-    }
-
     // std::string_view HtmlParser::decode() {}
 
     // void HtmlParser::PageElement::append(std::string_view tag) {}

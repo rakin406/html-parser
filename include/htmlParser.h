@@ -17,13 +17,6 @@ namespace hp
         explicit HtmlParser(std::ifstream& file);
 
         /**
-         * @brief Return prettified HTML document string.
-         *
-         * @return HTML document.
-         */
-        std::string_view prettify();
-
-        /**
          * @brief Returns unicode encoding of the document.
          *
          * @return unicode string.
