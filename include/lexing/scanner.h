@@ -12,7 +12,7 @@ namespace hp::lexing
     {
     public:
         explicit Scanner(std::string_view source);
-        std::vector<Token> scanTokens();
+        std::vector<Token> scanAllTokens();
 
     private:
         std::string_view m_source {};
@@ -22,6 +22,10 @@ namespace hp::lexing
         int m_line { 1 };
 
         bool isAtEnd();
+        void scanToken();
+        char advance();
+        void addToken(TokenType type);
+        void addToken(TokenType type, int literal);
     };
 } // namespace hp::lexing
 
