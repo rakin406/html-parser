@@ -25,7 +25,7 @@ namespace hp::lexing
         void scanToken();
         char advance();
         void addToken(TokenType type);
-        void addToken(TokenType type, int literal);
+        void addToken(TokenType type, int* literal);
     };
 } // namespace hp::lexing
 

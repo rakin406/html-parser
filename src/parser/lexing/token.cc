@@ -4,7 +4,8 @@
 
 namespace hp::lexing
 {
-    Token::Token(TokenType type, std::string_view lexeme, int literal, int line)
+    Token::Token(TokenType type, std::string_view lexeme, int* literal,
+                 int line)
         : m_type(type), m_lexeme(lexeme), m_literal(literal), m_line(line)
     {
     }

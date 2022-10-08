@@ -19,7 +19,7 @@ namespace hp::lexing
             scanToken();
         }
 
-        m_tokens.emplace_back(TokenType::EOF, "", 0, m_line);
+        m_tokens.emplace_back(TokenType::EOF, "", nullptr, m_line);
         return m_tokens;
     }
 
@@ -53,7 +53,7 @@ namespace hp::lexing
 
     void Scanner::addToken(TokenType type) { addToken(type, 0); }
 
-    void Scanner::addToken(TokenType type, int literal)
+    void Scanner::addToken(TokenType type, int* literal)
     {
         std::string_view text { m_source.substr(m_start, m_current) };
         m_tokens.emplace_back(type, text, literal, m_line);
