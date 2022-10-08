@@ -16,11 +16,13 @@ namespace
      */
     void addNewlineAfterClosingTags(std::string& document)
     {
-        for (std::size_t i = 0; i < document.size(); ++i)
+        std::size_t length { document.size() };
+        // std::string_view lastTag {};
+        for (std::size_t i = 0; i < length; ++i)
         {
             // Match closing tag character '>' and ensure that the letter after
             // '>' is not a newline.
-            if ((document[i] == '>') && (++i < document.size()) &&
+            if ((document[i] == '>') && (++i < length) &&
                 (document[++i] != '\n'))
             {
                 document.insert(++i, "\n");
