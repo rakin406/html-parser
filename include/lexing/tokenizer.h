@@ -1,17 +1,17 @@
-#ifndef SCANNER_H
-#define SCANNER_H
+#ifndef TOKENIZER_H
+#define TOKENIZER_H
 
 #include "token.h"
 
 #include <string_view>
 #include <vector>
 
-namespace hp::lexing
+namespace lexing
 {
-    class Scanner
+    class Tokenizer
     {
     public:
-        explicit Scanner(std::string_view source);
+        explicit Tokenizer(std::string_view source);
         std::vector<Token> scanAllTokens();
 
     private:
@@ -25,8 +25,7 @@ namespace hp::lexing
         void scanToken();
         char advance();
         void addToken(TokenType type);
-        void addToken(TokenType type, int* literal);
     };
-} // namespace hp::lexing
+} // namespace lexing
 
 #endif

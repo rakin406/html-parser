@@ -1,4 +1,4 @@
-#include "lexing/scanner.h"
+#include "lexing/tokenizer.h"
 
 #include "lexing/token.h"
 #include "lexing/tokenType.h"
@@ -6,11 +6,11 @@
 #include <string_view>
 #include <vector>
 
-namespace hp::lexing
+namespace lexing
 {
-    Scanner::Scanner(std::string_view source) : m_source(source) {}
+    Tokenizer::Tokenizer(std::string_view source) : m_source(source) {}
 
-    std::vector<Token> Scanner::scanAllTokens()
+    std::vector<Token> Tokenizer::scanAllTokens()
     {
         while (!isAtEnd())
         {
@@ -19,16 +19,16 @@ namespace hp::lexing
             scanToken();
         }
 
-        m_tokens.emplace_back(TokenType::EOF, "", nullptr, m_line);
+        m_tokens.emplace_back(TokenType::EOF, "");
         return m_tokens;
     }
 
-    bool Scanner::isAtEnd()
+    bool Tokenizer::isAtEnd()
     {
         return static_cast<std::size_t>(m_current) >= m_source.size();
     }
 
-    void Scanner::scanToken()
+    void Tokenizer::scanToken()
     {
         char c { advance() };
         // TODO: Finish this
@@ -45,17 +45,16 @@ namespace hp::lexing
         }
     }
 
-    char Scanner::advance()
+    char Tokenizer::advance()
     {
         ++m_current;
         return m_source.at(m_current - 1);
     }
 
-    void Scanner::addToken(TokenType type) { addToken(type, 0); }
-
-    void Scanner::addToken(TokenType type, int* literal)
+    void Tokenizer::addToken(TokenType type)
     {
         std::string_view text { m_source.substr(m_start, m_current) };
-        m_tokens.emplace_back(type, text, literal, m_line);
+        m_tokens.emplace_back(type, text);
     }
-} // namespace hp::lexing
+
+} // namespace lexing

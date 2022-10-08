@@ -33,7 +33,7 @@ add_library(lib
     src/parser/pageElement.cc
     src/parser/tag.cc
     src/parser/lexing/token.cc
-    src/parser/lexing/scanner.cc)
+    src/parser/lexing/tokenizer.cc)
 target_include_directories(lib PUBLIC include)
 
 # Make CLI executable link against library
