@@ -30,7 +30,8 @@ conan_basic_setup(NO_OUTPUT_DIRS TARGETS)
 # Public libraries needed for executables
 add_library(lib
     src/parser/htmlParser.cc
-    src/parser/lexing/token.cc)
+    src/parser/lexing/token.cc
+    src/parser/lexing/scanner.cc)
 target_include_directories(lib PUBLIC include)
 
 # Make CLI executable link against library
