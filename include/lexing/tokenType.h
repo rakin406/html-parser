@@ -1,7 +1,7 @@
 #ifndef TOKEN_TYPE_H
 #define TOKEN_TYPE_H
 
-namespace hp::lexing
+namespace lexing
 {
     enum class TokenType
     {

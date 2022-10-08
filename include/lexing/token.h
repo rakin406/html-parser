@@ -5,20 +5,17 @@
 
 #include <string_view>
 
-namespace hp::lexing
+namespace lexing
 {
     class Token
     {
     public:
-        Token(TokenType type, std::string_view lexeme, int* literal, int line);
-        std::string_view toString();
+        Token(TokenType type, std::string_view name);
 
     private:
         TokenType m_type {};
-        std::string_view m_lexeme {};
-        int* const m_literal {};
-        int m_line {};
+        std::string_view m_name {};
     };
-} // namespace hp::lexing
+} // namespace lexing
 
 #endif
