@@ -47,7 +47,7 @@ namespace lexing
     char Tokenizer::advance()
     {
         ++m_current;
-        return m_source.at(m_current - 1);
+        return m_source[m_current - 1];
     }
 
     void Tokenizer::addToken(TokenType type, int start)
@@ -55,5 +55,9 @@ namespace lexing
         std::string_view text { m_source.substr(start, m_current) };
         m_tokens.push_back(Token { type, text });
     }
+
+    char Tokenizer::current() { return m_source[m_current]; }
+
+    char Tokenizer::peek(int index) {}
 
 } // namespace lexing

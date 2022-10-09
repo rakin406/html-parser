@@ -20,7 +20,13 @@ namespace lexing
         int m_current { 0 };
         int m_line { 1 };
 
+        /**
+         * @brief Get current char.
+         *
+         * @return char.
+         */
         char current();
+
         char peek(int index);
         bool isAtEnd();
         void scanToken();
