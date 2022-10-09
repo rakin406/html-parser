@@ -55,6 +55,9 @@ namespace lexer
         case '=':
             addToken(TokenType::equals, start);
             break;
+        case '\0':
+            addToken(TokenType::EOF, start);
+            break;
         default:
             break;
         }
