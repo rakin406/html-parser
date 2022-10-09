@@ -1,6 +1,6 @@
 #include "htmlParser.h"
 
-#include "constants/tags.h"
+#include "lexing/tokenizer.h"
 
 #include <fstream>
 #include <string>
@@ -9,15 +9,20 @@
 
 namespace hp
 {
-    HtmlParser::HtmlParser(std::string_view str) : m_document(str) {}
+    HtmlParser::HtmlParser(std::string_view document)
+    {
+        lexing::Tokenizer tokenizer(document);
+        m_tokens = tokenizer.scanAllTokens();
+    }
 
     HtmlParser::HtmlParser(std::ifstream& file)
     {
         if (file.is_open())
         {
             // Copy the file content to member variable
-            m_document =
-                std::string { std::istreambuf_iterator<char>(file), {} };
+            std::string document = { std::istreambuf_iterator<char>(file), {} };
+            lexing::Tokenizer tokenizer(document);
+            m_tokens = tokenizer.scanAllTokens();
         }
     }
 

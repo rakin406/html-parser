@@ -1,11 +1,13 @@
 #ifndef HTML_PARSER_H
 #define HTML_PARSER_H
 
+#include "lexing/token.h"
 #include "pageElement.h"
 #include "tag.h"
 
 #include <fstream>
 #include <string_view>
+#include <vector>
 
 namespace hp
 {
@@ -15,7 +17,7 @@ namespace hp
     class HtmlParser : public PageElement, public Tag
     {
     public:
-        explicit HtmlParser(std::string_view str);
+        explicit HtmlParser(std::string_view document);
         explicit HtmlParser(std::ifstream& file);
 
         /**
@@ -26,7 +28,7 @@ namespace hp
         std::string_view decode();
 
     private:
-        std::string_view m_document {}; // HTML document
+        std::vector<lexing::Token> m_tokens {}; // HTML tokens
     };
 
 } // namespace hp
