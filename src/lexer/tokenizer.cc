@@ -66,7 +66,15 @@ namespace lexer
         m_tokens.push_back(Token { type, text });
     }
 
-    char Tokenizer::current() { return m_source[m_current]; }
+    char Tokenizer::current()
+    {
+        // Return empty if position exceeds document size
+        if (static_cast<std::size_t>(m_current) >= m_source.size())
+        {
+            return '\0';
+        }
+        return m_source[m_current];
+    }
 
     char Tokenizer::peek(int index) { return m_source[m_current + index]; }
 
