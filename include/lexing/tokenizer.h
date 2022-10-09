@@ -17,14 +17,22 @@ namespace lexing
     private:
         std::string_view m_source {};
         std::vector<Token> m_tokens {};
-        int m_start { 0 };
         int m_current { 0 };
         int m_line { 1 };
 
+        char current();
+        char peek(int index);
         bool isAtEnd();
         void scanToken();
+
+        /**
+         * @brief Get current char and increment char index.
+         *
+         * @return current char.
+         */
         char advance();
-        void addToken(TokenType type);
+
+        void addToken(TokenType type, int start);
     };
 } // namespace lexing
 

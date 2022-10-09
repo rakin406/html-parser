@@ -15,7 +15,6 @@ namespace lexing
         while (!isAtEnd())
         {
             // We are at the beginning of the next lexeme
-            m_start = m_current;
             scanToken();
         }
         return m_tokens;
@@ -28,15 +27,17 @@ namespace lexing
 
     void Tokenizer::scanToken()
     {
+        int start { m_current };
         char c { advance() };
+
         // TODO: Finish this
         switch (c)
         {
         case '<':
-            addToken(TokenType::openingTag);
+            addToken(TokenType::openingTag, start);
             break;
         case '>':
-            addToken(TokenType::closingTag);
+            addToken(TokenType::closingTag, start);
             break;
         default:
             break;
@@ -49,10 +50,10 @@ namespace lexing
         return m_source.at(m_current - 1);
     }
 
-    void Tokenizer::addToken(TokenType type)
+    void Tokenizer::addToken(TokenType type, int start)
     {
-        std::string_view text { m_source.substr(m_start, m_current) };
-        m_tokens.emplace_back(type, text);
+        std::string_view text { m_source.substr(start, m_current) };
+        m_tokens.push_back(Token { type, text });
     }
 
 } // namespace lexing
