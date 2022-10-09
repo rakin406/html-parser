@@ -27,16 +27,17 @@ namespace lexer
          */
         char current();
 
+        /**
+         * @brief Get char after specified index.
+         *
+         * @param index Position to increment.
+         *
+         * @return char.
+         */
         char peek(int index);
+
         bool isAtEnd();
         void scanToken();
-
-        /**
-         * @brief Get current char and increment char index.
-         *
-         * @return current char.
-         */
-        char advance();
 
         void addToken(TokenType type, int start);
     };

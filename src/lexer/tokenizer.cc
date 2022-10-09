@@ -3,6 +3,7 @@
 #include "lexer/token.h"
 #include "lexer/tokenType.h"
 
+#include <cctype>
 #include <string_view>
 #include <vector>
 
@@ -28,26 +29,35 @@ namespace lexer
     void Tokenizer::scanToken()
     {
         int start { m_current };
-        char c { advance() };
+        ++m_current;
+        char c { m_source[m_current - 1] };
+
+        if (std::isspace(c) != 0)
+        {
+            addToken(TokenType::whitespace, start);
+        }
 
         // TODO: Finish this
         switch (c)
         {
         case '<':
-            addToken(TokenType::openingTag, start);
+            addToken(TokenType::lessThan, start);
             break;
         case '>':
-            addToken(TokenType::closingTag, start);
+            addToken(TokenType::greaterThan, start);
+            break;
+        case '/':
+            if (peek(1) == '>')
+            {
+                addToken(TokenType::slashGreaterThan, start);
+            }
+            break;
+        case '=':
+            addToken(TokenType::equals, start);
             break;
         default:
             break;
         }
-    }
-
-    char Tokenizer::advance()
-    {
-        ++m_current;
-        return m_source[m_current - 1];
     }
 
     void Tokenizer::addToken(TokenType type, int start)
@@ -58,6 +68,6 @@ namespace lexer
 
     char Tokenizer::current() { return m_source[m_current]; }
 
-    char Tokenizer::peek(int index) {}
+    char Tokenizer::peek(int index) { return m_source[m_current + index]; }
 
 } // namespace lexer
