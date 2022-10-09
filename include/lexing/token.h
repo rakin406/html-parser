@@ -7,14 +7,10 @@
 
 namespace lexing
 {
-    class Token
+    struct Token
     {
-    public:
-        Token(TokenType type, std::string_view name);
-
-    private:
-        TokenType m_type {};
-        std::string_view m_name {};
+        TokenType type {};
+        std::string_view text {};
     };
 } // namespace lexing
 

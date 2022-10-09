@@ -4,8 +4,8 @@
 
 namespace lexing
 {
-    Token::Token(TokenType type, std::string_view name)
-        : m_type(type), m_name(name)
+    Token::Token(TokenType type, std::string_view text)
+        : m_type(type), m_text(text)
     {
     }
 } // namespace lexing
