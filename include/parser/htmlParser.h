@@ -1,7 +1,7 @@
 #ifndef HTML_PARSER_H
 #define HTML_PARSER_H
 
-#include "lexing/token.h"
+#include "lexer/token.h"
 #include "pageElement.h"
 #include "tag.h"
 
@@ -9,7 +9,7 @@
 #include <string_view>
 #include <vector>
 
-namespace hp
+namespace parser
 {
     /**
      * @brief This class defines the basic interface called by the html parser.
@@ -28,9 +28,9 @@ namespace hp
         std::string_view decode();
 
     private:
-        std::vector<lexing::Token> m_tokens {}; // HTML tokens
+        std::vector<lexer::Token> m_tokens {}; // HTML tokens
     };
 
-} // namespace hp
+} // namespace parser
 
 #endif

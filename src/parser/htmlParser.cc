@@ -1,17 +1,17 @@
-#include "htmlParser.h"
+#include "parser/htmlParser.h"
 
-#include "lexing/tokenizer.h"
+#include "lexer/tokenizer.h"
 
 #include <fstream>
 #include <string>
 #include <string_view>
 #include <vector>
 
-namespace hp
+namespace parser
 {
     HtmlParser::HtmlParser(std::string_view document)
     {
-        lexing::Tokenizer tokenizer(document);
+        lexer::Tokenizer tokenizer(document);
         m_tokens = tokenizer.scanAllTokens();
     }
 
@@ -21,7 +21,7 @@ namespace hp
         {
             // Copy the file content to member variable
             std::string document = { std::istreambuf_iterator<char>(file), {} };
-            lexing::Tokenizer tokenizer(document);
+            lexer::Tokenizer tokenizer(document);
             m_tokens = tokenizer.scanAllTokens();
         }
     }
@@ -45,4 +45,4 @@ namespace hp
     //
     // bool HtmlParser::Tag::isEmptyElement() {}
 
-} // namespace hp
+} // namespace parser

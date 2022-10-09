@@ -5,13 +5,13 @@
 
 #include <string_view>
 
-namespace lexing
+namespace lexer
 {
     struct Token
     {
         TokenType type {};
         std::string_view text {};
     };
-} // namespace lexing
+} // namespace lexer
 
 #endif

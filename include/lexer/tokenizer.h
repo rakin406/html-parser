@@ -6,7 +6,7 @@
 #include <string_view>
 #include <vector>
 
-namespace lexing
+namespace lexer
 {
     class Tokenizer
     {
@@ -40,6 +40,6 @@ namespace lexing
 
         void addToken(TokenType type, int start);
     };
-} // namespace lexing
+} // namespace lexer
 
 #endif

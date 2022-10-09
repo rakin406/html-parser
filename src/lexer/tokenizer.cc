@@ -1,12 +1,12 @@
-#include "lexing/tokenizer.h"
+#include "lexer/tokenizer.h"
 
-#include "lexing/token.h"
-#include "lexing/tokenType.h"
+#include "lexer/token.h"
+#include "lexer/tokenType.h"
 
 #include <string_view>
 #include <vector>
 
-namespace lexing
+namespace lexer
 {
     Tokenizer::Tokenizer(std::string_view source) : m_source(source) {}
 
@@ -60,4 +60,4 @@ namespace lexing
 
     char Tokenizer::peek(int index) {}
 
-} // namespace lexing
+} // namespace lexer

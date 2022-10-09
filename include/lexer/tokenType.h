@@ -1,7 +1,7 @@
 #ifndef TOKEN_TYPE_H
 #define TOKEN_TYPE_H
 
-namespace lexing
+namespace lexer
 {
     enum class TokenType
     {
