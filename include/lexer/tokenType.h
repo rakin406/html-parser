@@ -8,13 +8,11 @@ namespace lexer
         lessThan,         // <
         greaterThan,      // >
         slashGreaterThan, // />
-        openingTag,       // <body>
-        closingTag,       // </body>
-        completeTag,      // <body />
-        attribute,        // src
         equals,           // =
-        text,             // "Hello"
-        whitespace
+        ident,            // Example: body
+        stringLiteral,    // Example: "www.google.com"
+        whitespace,
+        EOF
     };
 }
 
