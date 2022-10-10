@@ -15,10 +15,10 @@ namespace lexer
         std::vector<Token> scanAllTokens();
 
     private:
-        std::string_view m_source {};
-        std::vector<Token> m_tokens {};
-        int m_current { 0 };
-        int m_line { 1 };
+        std::string_view m_source {};   // Document string
+        std::vector<Token> m_tokens {}; // Collection of tokens
+        int m_current { 0 };            // Current char index
+        int m_line { 1 };               // Line number
 
         /**
          * @brief Get current char.

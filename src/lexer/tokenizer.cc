@@ -4,6 +4,7 @@
 #include "lexer/tokenType.h"
 
 #include <cctype>
+#include <regex>
 #include <string_view>
 #include <vector>
 
@@ -29,8 +30,8 @@ namespace lexer
     void Tokenizer::scanToken()
     {
         int start { m_current };
+        char c { m_source[start] };
         ++m_current;
-        char c { m_source[m_current - 1] };
 
         if (std::isspace(c) != 0)
         {
@@ -42,6 +43,18 @@ namespace lexer
         {
         case '<':
             addToken(TokenType::lessThan, start);
+
+            while ((peek(1) != '>') || (peek(1) != '/' && peek(2) != '>'))
+            {
+                if (std::isspace(c) == 0)
+                {
+                    // TODO: Complete this branch
+                    std::regex rx { R"re("(?:[^"\\]|\\.)*")re" };
+                }
+
+                ++m_current;
+            }
+
             break;
         case '>':
             addToken(TokenType::greaterThan, start);
@@ -56,7 +69,7 @@ namespace lexer
             addToken(TokenType::equals, start);
             break;
         case '\0':
-            addToken(TokenType::EOF, start);
+            addToken(TokenType::endOfFile, start);
             break;
         default:
             break;

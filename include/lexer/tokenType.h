@@ -12,7 +12,7 @@ namespace lexer
         ident,            // Example: body
         stringLiteral,    // Example: "www.google.com"
         whitespace,
-        EOF
+        endOfFile
     };
 }
 
