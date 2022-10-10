@@ -4,7 +4,7 @@
 #include "lexer/tokenType.h"
 
 #include <cctype>
-#include <regex>
+#include <string>
 #include <string_view>
 #include <vector>
 
@@ -48,8 +48,6 @@ namespace lexer
             {
                 if (std::isspace(c) == 0)
                 {
-                    // TODO: Complete this branch
-                    std::regex rx { R"re("(?:[^"\\]|\\.)*")re" };
                 }
 
                 ++m_current;
@@ -71,7 +69,15 @@ namespace lexer
         case '\0':
             addToken(TokenType::endOfFile, start);
             break;
-        default:
+        case '"':
+        case '\'':
+            // Increment index until matching quote
+            while ((peek(1) != '"') || (peek(1) != '\''))
+            {
+                ++m_current;
+            }
+
+            addToken(TokenType::stringLiteral, start);
             break;
         }
     }
