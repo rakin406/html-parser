@@ -4,7 +4,6 @@
 #include "lexer/tokenType.h"
 
 #include <cctype>
-#include <string>
 #include <string_view>
 #include <vector>
 
@@ -38,20 +37,18 @@ namespace lexer
             addToken(TokenType::whitespace, start);
         }
 
-        // TODO: Finish this
         switch (c)
         {
         case '<':
+            // TODO: Finish this
             addToken(TokenType::lessThan, start);
 
             while ((peek(1) != '>') || (peek(1) != '/' && peek(2) != '>'))
             {
-                if (std::isspace(c) == 0)
-                {
-                }
-
                 ++m_current;
             }
+
+            addToken(TokenType::ident, start);
 
             break;
         case '>':
@@ -70,14 +67,24 @@ namespace lexer
             addToken(TokenType::endOfFile, start);
             break;
         case '"':
-        case '\'':
             // Increment index until matching quote
-            while ((peek(1) != '"') || (peek(1) != '\''))
+            while ((peek(1) != '"'))
             {
                 ++m_current;
             }
 
             addToken(TokenType::stringLiteral, start);
+            break;
+        case '\'':
+            // Increment index until matching quote
+            while ((peek(1) != '\''))
+            {
+                ++m_current;
+            }
+
+            addToken(TokenType::stringLiteral, start);
+            break;
+        default:
             break;
         }
     }
