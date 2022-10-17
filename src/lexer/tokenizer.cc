@@ -36,56 +36,57 @@ namespace lexer
         {
             addToken(TokenType::whitespace, start);
         }
-
-        switch (c)
+        else if (std::isalpha(c) != 0)
         {
-        case '<':
-            // TODO: Finish this
-            addToken(TokenType::lessThan, start);
-
-            while ((peek(1) != '>') || (peek(1) != '/' && peek(2) != '>'))
+            while ((std::isalpha(peek(0)) != 0) || (peek(0) == '-'))
             {
                 ++m_current;
             }
-
             addToken(TokenType::ident, start);
-
-            break;
-        case '>':
-            addToken(TokenType::greaterThan, start);
-            break;
-        case '/':
-            if (peek(1) == '>')
+        }
+        else
+        {
+            switch (c)
             {
-                addToken(TokenType::slashGreaterThan, start);
-            }
-            break;
-        case '=':
-            addToken(TokenType::equals, start);
-            break;
-        case '\0':
-            addToken(TokenType::endOfFile, start);
-            break;
-        case '"':
-            // Increment index until matching quote
-            while ((peek(1) != '"'))
-            {
-                ++m_current;
-            }
+            case '<':
+                addToken(TokenType::lessThan, start);
+                break;
+            case '>':
+                addToken(TokenType::greaterThan, start);
+                break;
+            case '/':
+                if (peek(1) == '>')
+                {
+                    addToken(TokenType::slashGreaterThan, start);
+                }
+                break;
+            case '=':
+                addToken(TokenType::equals, start);
+                break;
+            case '\0':
+                addToken(TokenType::endOfFile, start);
+                break;
+            case '"':
+                // Increment index until matching quote
+                while ((peek(1) != '"'))
+                {
+                    ++m_current;
+                }
 
-            addToken(TokenType::stringLiteral, start);
-            break;
-        case '\'':
-            // Increment index until matching quote
-            while ((peek(1) != '\''))
-            {
-                ++m_current;
-            }
+                addToken(TokenType::stringLiteral, start);
+                break;
+            case '\'':
+                // Increment index until matching quote
+                while ((peek(1) != '\''))
+                {
+                    ++m_current;
+                }
 
-            addToken(TokenType::stringLiteral, start);
-            break;
-        default:
-            break;
+                addToken(TokenType::stringLiteral, start);
+                break;
+            default:
+                break;
+            }
         }
     }
 
