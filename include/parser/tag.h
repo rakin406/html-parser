@@ -16,8 +16,7 @@ public:
     void decompose();
 
     /**
-     * @brief Return only the first child of this Tag matching the
-     given
+     * @brief Return only the first child of this Tag matching the given
      * criteria.
      *
      * @return string.
