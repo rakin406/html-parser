@@ -1,9 +1,9 @@
 #ifndef HTML_PARSER_H
 #define HTML_PARSER_H
 
+#include "ast/pageElement.h"
+#include "ast/tag.h"
 #include "lexer/token.h"
-#include "pageElement.h"
-#include "tag.h"
 
 #include <fstream>
 #include <string_view>
@@ -14,7 +14,7 @@ namespace parser
     /**
      * @brief This class defines the basic interface called by the html parser.
      */
-    class HtmlParser : public PageElement, public Tag
+    class HtmlParser
     {
     public:
         explicit HtmlParser(std::string_view document);
