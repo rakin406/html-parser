@@ -28,21 +28,4 @@ namespace parser
 
     // std::string_view HtmlParser::decode() {}
 
-    // void HtmlParser::PageElement::append(std::string_view tag) {}
-    // void HtmlParser::PageElement::extract() {}
-
-    // void HtmlParser::Tag::decompose() {}
-    //
-    // std::string_view HtmlParser::Tag::findChild() {}
-    //
-    // std::vector<std::string_view> HtmlParser::Tag::findChildren() {}
-    //
-    // std::string_view HtmlParser::Tag::get() {}
-    //
-    // std::vector<std::string_view> HtmlParser::Tag::getText() {}
-    //
-    // bool HtmlParser::Tag::hasKey() {}
-    //
-    // bool HtmlParser::Tag::isEmptyElement() {}
-
 } // namespace parser
